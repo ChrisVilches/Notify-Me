@@ -35,7 +35,7 @@ Content: notification body, text here...
 200 OK
 ```
 
-You can also execute it by having the API key as an environment variable, instead of passing it as an option parameter:
+You can also execute it by having the API key as an environment variable, instead of passing it as an option parameter (NOTE: Specifying `-apiKey YOUR_API_KEY` overrides the environment variable):
 
 ```bash
 # Store it in ~/.bashrc

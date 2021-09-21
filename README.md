@@ -21,7 +21,7 @@ make build # Or inspect Makefile to see the command, in case this doesn't work.
 Then link the executable to your `PATH` so it can be run.
 
 ```bash
-PATH=$PATH:~/notify-me/build # Should be done in ~/.bashrc so it's permanent (and more convenient).
+PATH=$PATH:~/Notify-Me/build # Should be done in ~/.bashrc so it's permanent (and more convenient).
 
 notify_me -apiKey YOUR_API_KEY -title "notification title" -content "notification body, text here..."
 ```

@@ -1,29 +1,29 @@
 package main
 
-import "testing"
-
-// TODO: Are these tests following good practices?
+import (
+	"fmt"
+	"testing"
+)
 
 func TestValidateInputIncorrect(t *testing.T) {
-	errMsg := "not handled as incorrect"
-	if validateInput("", "", "") == nil {
-		t.Errorf(errMsg)
+	var tests = []struct {
+		a, b, c string
+	}{
+		{"x", "x", ""},
+		{"", "x", "x"},
+		{"x", "", "x"},
+		{"", "", ""},
+		{"", "x", ""},
+		{"", "", "x"},
 	}
 
-	if validateInput("x", "", "") == nil {
-		t.Errorf(errMsg)
-	}
-
-	if validateInput("", "x", "") == nil {
-		t.Errorf(errMsg)
-	}
-
-	if validateInput("", "", "x") == nil {
-		t.Errorf(errMsg)
-	}
-
-	if validateInput("", "", "x") == nil {
-		t.Errorf(errMsg)
+	for _, test := range tests {
+		testname := fmt.Sprintf("Input: %s %s %s", test.a, test.b, test.c)
+		t.Run(testname, func(t *testing.T) {
+			if validateInput(test.a, test.b, test.c) == nil {
+				t.Errorf("input is incorrect, but was handled as correct")
+			}
+		})
 	}
 }
 

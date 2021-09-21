@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 )
 
 var (
@@ -31,6 +32,10 @@ func validateInput(apiKey string, title string, content string) error {
 	return nil
 }
 
+func getTime() string {
+	return time.Now().Format(time.UnixDate)
+}
+
 func main() {
 	flag.Parse()
 	apiKey := *apiKeyOpt
@@ -44,11 +49,14 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Printf("Notification started at %s\n", getTime())
 	fmt.Printf("Sending to: %s\n", apiKey)
 	fmt.Printf("Title: %s\n", title)
 	fmt.Printf("Content: %s\n", content)
 
 	_, err := notify(apiKey, title, content)
+
+	fmt.Printf("Finished at %s\n", getTime())
 
 	if err != nil {
 		os.Exit(1)

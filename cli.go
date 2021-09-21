@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -18,16 +19,16 @@ func getApiKeyFromEnv() string {
 	return os.Getenv(apiKeyEnvVariableName)
 }
 
-func validateInput(apiKey string, title string, content string) {
+func validateInput(apiKey string, title string, content string) error {
 	if apiKey == "" {
-		fmt.Println("API key is required")
-		os.Exit(1)
+		return errors.New("API key is required")
 	}
 
 	if title == "" || content == "" {
-		fmt.Println("Title and content are required")
-		os.Exit(1)
+		return errors.New("title and content are required")
 	}
+
+	return nil
 }
 
 func main() {
@@ -36,7 +37,12 @@ func main() {
 	content := *contentOpt
 	title := *titleOpt
 
-	validateInput(apiKey, title, content)
+	validateErr := validateInput(apiKey, title, content)
+
+	if validateErr != nil {
+		fmt.Println(validateErr)
+		os.Exit(1)
+	}
 
 	fmt.Printf("Sending to: %s\n", apiKey)
 	fmt.Printf("Title: %s\n", title)

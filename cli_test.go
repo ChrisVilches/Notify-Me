@@ -43,25 +43,20 @@ func TestValidateInputIncorrect(t *testing.T) {
 }
 
 func TestNormalizeInput(t *testing.T) {
-	emptyContent := ""
-	presentContent := "xxx"
-	emptyUrl := ""
-	presentUrl := "http"
-
 	var resultContent string
 	var resultUrl string
 
-	resultContent, resultUrl = normalizeInput(emptyContent, emptyUrl)
+	resultContent, resultUrl = normalizeInput("", "")
 	assert.Equal(t, resultContent, "")
 	assert.Equal(t, resultUrl, "")
-	resultContent, resultUrl = normalizeInput(emptyContent, presentUrl)
+	resultContent, resultUrl = normalizeInput("", "http")
 	assert.Equal(t, resultContent, "http")
 	assert.Equal(t, resultUrl, "http")
 
-	resultContent, resultUrl = normalizeInput(presentContent, emptyUrl)
+	resultContent, resultUrl = normalizeInput("xxx", "")
 	assert.Equal(t, resultContent, "xxx")
 	assert.Equal(t, resultUrl, "")
-	resultContent, resultUrl = normalizeInput(presentContent, presentUrl)
+	resultContent, resultUrl = normalizeInput("xxx", "http")
 	assert.Equal(t, resultContent, "xxx")
 	assert.Equal(t, resultUrl, "http")
 }

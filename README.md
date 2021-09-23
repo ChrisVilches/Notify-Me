@@ -24,6 +24,9 @@ Then link the executable to your `PATH` so it can be run.
 PATH=$PATH:~/Notify-Me/build # Should be done in ~/.bashrc so it's permanent (and more convenient).
 
 notify_me -apiKey YOUR_API_KEY -title "notification title" -content "notification body, text here..."
+
+# Optionally pass an URL
+notify_me -apiKey YOUR_API_KEY -title "title" -content "body" -url "http://www.my-website.com"
 ```
 
 If everything is OK, you should see this output, while getting a notification to your phone:
